@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Define the list of directories
+files=("~/.config/fish/config.fish" "~/.config/i3/config" "~/.config/i3blocks/config" "~/.config/nvim/lua/general/" "~/.config/nvim/after/plugin/")
+
+foreground_color="#FFFFFF"
+background_color="#000000"
+highlight_color="#FF0000"
+
+selected_file=$(printf '%s\n' "${files[@]}" | dmenu -i -p "Configure:" \
+    -nb "$background_color" \
+    -nf "$foreground_color" \
+    -sb "$highlight_color" \
+    -sf "$background_color")
+
+if [ -n "$selected_file" ]; then
+  neovide $selected_file
+fi
+
